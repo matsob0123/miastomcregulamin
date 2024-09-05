@@ -17,10 +17,6 @@
       width: 100vw;
       height: 100vh;
     }
-    /* Hide the control bar */
-    .vjs-control-bar {
-      display: none !important;
-    }
   </style>
 </head>
 <body>
@@ -46,23 +42,23 @@
   <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
   <script>
     var player = videojs('my-video', {
-      controls: false, // Disable controls
-      autoplay: true, // Autoplay the video
+      controls: true,
+      autoplay: 'play', // Autoplay the video
       muted: false, // Ensure sound is on
       volume: 1, // Set volume to 100%
       loop: true // Loop the video
     });
 
     player.ready(function() {
-      this.play().then(() => {
-        // Request fullscreen mode once the video starts playing
-        this.requestFullscreen();
-      }).catch((error) => {
+      this.play().catch(function(error) {
         console.error('Autoplay with sound might be blocked by the browser', error);
       });
+
+      // Request fullscreen mode
+      this.requestFullscreen();
     });
 
-    // Prevent exiting fullscreen mode with the 'Escape' key
+    // Prevents exiting fullscreen mode with the 'Escape' key
     document.addEventListener("keydown", function(event) {
       if (event.key === "Escape") {
         event.preventDefault();
