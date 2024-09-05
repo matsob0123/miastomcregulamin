@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html>
-   <body>
-       <video autoplay loop width="100%">
+  <body>
+    <video autoplay loop width="100%">
+      <source src="rokleken.mp4" type="video/mp4" />
+      Twoja przeglądarka nie obsługuje wideo.
+    </video>
+    <script>
+      // Change the variables below to your liking
+      const currentURL = "rokleken.mp4";
+      const pageTitle = "Loading...";
+      // End of changeable variables
 
-    <source src="rokleken.mp4"
-            type="video/mp4">
+      function setTitle() {
+        document.title = pageTitle;
+      }
 
-    Twoja przegladarka nie obsluguje regulaminów.
-</video>
-      <script>
-         // Change the variables below to your liking
-         const currentURL = "rokleken.mp4";
-         const pageTitle = "Loading...";
-         // End of changable variables
-         
-         function setTitle() {
-            document.title = pageTitle;
-         }
-         
-         function redirect() {
-            window.location.href = currentURL;
-         }
-         
-         function onload() {
-            setTitle();
-            redirect();
-         }
-         
-         window.onload = onload();
-       </script>
-   </body>
+      function redirect() {
+        window.location.href = currentURL;
+      }
+
+      function onload() {
+        setTitle();
+        redirect();
+      }
+
+      // Corrected this line to assign the function, not call it immediately
+      window.onload = onload;
+    </script>
+  </body>
 </html>
