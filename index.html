@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video.js Autoplay Example</title>
+  <title>Regulamin miastomcsmp</title>
   <!-- Video.js CSS -->
   <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <style>
+    /* Make the video player fullscreen */
+    body, html {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #my-video {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
   <!-- Video.js Player -->
@@ -15,10 +27,7 @@
     controls
     autoplay
     preload="auto"
-    width="640"
-    height="264"
-    poster="MY_VIDEO_POSTER.jpg"
-    data-setup='{"autoplay": true, "muted": false, "volume": 1}'
+    data-setup='{"autoplay": true, "muted": false, "volume": 1, "loop": true}'
   >
     <source src="regulaminczytany.mp4" type="video/mp4" />
     <!-- Add more sources if needed -->
@@ -33,10 +42,10 @@
   <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
   <script>
     var player = videojs('my-video', {
+      controls: true,
       autoplay: 'play', // Autoplay the video
       muted: false, // Ensure sound is on
       volume: 1, // Set volume to 100%
-      controls: true, // Enable player controls
       loop: true // Loop the video
     });
 
@@ -44,6 +53,9 @@
       this.play().catch(function(error) {
         console.error('Autoplay with sound might be blocked by the browser', error);
       });
+
+      // Request fullscreen mode
+      this.requestFullscreen();
     });
 
     // Prevents exiting fullscreen mode with the 'Escape' key
